@@ -113,5 +113,71 @@ public class TwoPointers {
     /**
      * 141. Linked List Cycle (Easy)
      */
-    
+    public boolean hasCycle(ListNode head){
+        if (head == null){
+            return false;
+        }
+        ListNode l1= head,l2=head.next;
+        while (l1!=null&&l2!=null&&l2.next!=null){
+            if(l1==l2){
+                return true;
+            }
+            l1 = l1.next;
+            l2=l2.next.next;
+        }
+        return false;
+    }
+
+    /**
+     * 524. Longest Word in Dictionary through Deleting(Medium)
+     */
+    private boolean isSubstr(String s,String target){
+        int i=0,j=0;
+        while (i<s.length()&&j<target.length()){
+            if(s.charAt(i)==target.charAt(j)){
+                j++;
+            }
+            i++;
+        } return j==target.length();
+    }
+
+    public String findLongestWord(String s, String[] d){
+        String longestWord ="";
+        for (String target : d) {
+            int l1=longestWord.length(),l2=target.length();
+            if(l1>l2 || (l1 ==l2 && longestWord.compareTo(target)<0)){
+                continue;
+            }
+            if(isSubstr(s,target)){
+                longestWord=target;
+            }
+        }
+        return longestWord;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
