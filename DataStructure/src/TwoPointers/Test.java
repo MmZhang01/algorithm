@@ -42,15 +42,33 @@ public class Test {
         System.out.println(Arrays.toString(nums1));
     }
 
+    public static void test6(){
+        ListNode head = new ListNode(3);
+        head.next= new ListNode(2);
+        head.next.next=new ListNode(0);
+        head.next.next.next=new ListNode(-4);
+        head.next.next.next.next=head.next;
+        TwoPointers result = new TwoPointers();
+        System.out.println(result.hasCycle(head));
+    }
 
+    public static void test7(){
+        String s="abpcplea";
+        String[] d = new String[]{"ale","apple","monkey","plea"};
+        TwoPointers result = new TwoPointers();
+        System.out.println(result.findLongestWord(s,d));
+    }
 
     public static void main(String[] args){
 //        test1();
 //        test2();
 //        test3();
 //        test4();
-        test5();
+//        test5();
+//        test6();
+        test7();
     }
+
 
 
 
