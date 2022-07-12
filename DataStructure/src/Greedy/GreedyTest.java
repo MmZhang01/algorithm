@@ -11,9 +11,19 @@ public class GreedyTest {
         assertEquals(2,m);
 //        System.out.println(Greedy.findContentChildren(grid,size));
     }
-    public static void main(String[] args){
-        test1();
 
+    public static void test2(){
+        int[][] input = new int[][]{{1,2},{4,5},{3,4}};
+        int m = Greedy.eraseOverlapIntervals(input);
+        assertEquals(2,m);
+    }
+
+
+
+
+    public static void main(String[] args){
+//        test1();
+        test2();
     }
 
 }
