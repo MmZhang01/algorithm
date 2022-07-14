@@ -3,6 +3,11 @@ package TwoPointers;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * 1指定两个指针
+ * 2while 循环
+ */
+
 public class TwoPointers {
 
     /*
