@@ -32,14 +32,22 @@ public class GreedyTest {
         assertArrayEquals(output,m);
     }
 
+    public static void test5(){
+        int[] input = new int[]{7,1,5,3,6,4};
+        int output = Greedy.maxProfit(input);
+        assertEquals(5,output);
+    }
+
 
 
     public static void main(String[] args){
 //        test1();
 //        test2();
 //        test3();
-        test4();
+//        test4();
+        test5();
     }
+
 
 
 }

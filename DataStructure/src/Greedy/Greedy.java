@@ -75,23 +75,88 @@ public class Greedy {
     /**
      * 406. Queue Reconstruction by Height(Medium)
      */
-//    public static int[][] reconstructQueue(int[][] people) {
-//        if(people.length==0){return new int[0][0];
-//        }
-//        Arrays.sort(people,Comparator.comparingInt());
-//    }
+
+        /*
+        * personal method: sort height from low to high, position from low to high
+        * then loop the array to judge the right element at each position
+        * */
     public static int[][] reconstructQueue(int[][] people) {
         if (people == null || people.length == 0 || people[0].length == 0) {
             return new int[0][0];
         }
-        Arrays.sort(people, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]));
+        Arrays.sort(people, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]));
         List<int[]> queue = new ArrayList<>();
-        for (int[] p : people) {
-            queue.add(p[1], p);
+        queue.add(new int[]{0,0}); //添加初始值
+        int n=0;
+        while(queue.size()<people.length+1){
+            for (int[] p : people) {
+                int m =0;   //统计queue中比当前q[0]大的数
+                for (int[] i : queue) {
+                    if(p[0]<=i[0]){
+                        m++;
+                    }
+                }
+                if(m==p[1]){   // 如果位置正确，添加到队列中
+                    queue.add(n,p);
+                    n++;
+                    break;
+                }
+            }
         }
+        queue.remove(people.length);//删除初始值
         return queue.toArray(new int[queue.size()][]);
     }
+        /*
+         * a better method: sort height from high to low, sort position from low to high
+         * since add an element to arraylist at a specific position, the original array move to the right
+         * */
 
+//    public static int[][] reconstructQueue(int[][] people) {
+//        if (people == null || people.length == 0 || people[0].length == 0) {
+//            return new int[0][0];
+//        }
+//        Arrays.sort(people, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]));
+//        List<int[]> queue = new ArrayList<>();
+//        for (int[] p : people) {
+//            queue.add(p[1], p);
+//        }
+//        return queue.toArray(new int[queue.size()][]);
+//    }
+
+    /**
+     * 121. Best Time to Buy and Sell Stock (Easy)
+     */
+    /*
+    * brute force
+    * */
+//    public static int maxProfit(int[] prices) {
+//        int i=0;
+//        int maxprofit=0;
+//        while (i<prices.length-1){
+//            for (int j=i+1;j<prices.length;j++){
+//                int profits = prices[j]-prices[i];
+//                if(profits>maxprofit){
+//                    maxprofit=profits;
+//                }
+//            }
+//            i++;
+//        }
+//        return maxprofit;
+//    }
+    /*
+    * a better way: judge the whether the value is the minimum, T, change the min,else cal the profit and compare
+    * */
+    public static int maxProfit(int[] prices){
+        int min = prices[0];
+        int max = 0;
+        for (int price: prices) {
+            if (price < min ){
+                min = price;
+            }else{
+                max=Math.max(max,price-min);
+            }
+        }return max;
+    }
 }
 
 
