@@ -61,7 +61,7 @@ public class BinarySearch {
     /**
      * 744. Find Smallest Letter Greater Than Target (Easy)
      */
-    
+
 
 }
 
