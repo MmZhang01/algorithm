@@ -30,5 +30,20 @@ public class Tree {
         return Math.max(l,r)+1;
     }
 
+    /**
+     * 543. Diameter of Binary Tree (Easy)
+     */
+    private int max=0;
+    public int diameterOfBinaryTree(TreeNode root){
+       depth(root);
+       return max;
+    }
 
+    public int depth(TreeNode root){
+        if(root==null){return 0;}
+        int leftdepth = depth(root.left);
+        int rightdepth = depth(root.right);
+        max = Math.max(max,leftdepth+rightdepth);
+        return Math.max(leftdepth,rightdepth)+1;
+    }
 }
