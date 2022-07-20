@@ -1,5 +1,8 @@
 package Tree;
 
+import javax.transaction.TransactionRequiredException;
+import java.util.LinkedList;
+
 public class TreeNode {
       int val;
       TreeNode left;
@@ -12,16 +15,37 @@ public class TreeNode {
           this.right = right;
       }
 
-      public TreeNode addNext(TreeNode root,int m){
-          if(this==null){
-              this.val=m;
-          }else if(this.left==null){
-              addNext(this.left,m);
+      public void addNext(TreeNode root,int m){
+
+          if(root==null){
+              root.val=m;
+              return;
           }
-          else if(this.right==null){
-              addNext(this.right,m);
+          LinkedList<TreeNode> queue =new LinkedList<>();
+          queue.offer(root);
+          while(!queue.isEmpty()){
+              TreeNode node =queue.poll();
+              if(node.left!=null){
+                  queue.offer(node.left);
+              }else{node.}
+              if(node.right!=null){
+                  queue.offer(node.right);
+              }
           }
-          return this;
+
+//          if(this==null){
+//              this.val=m;
+//              return this;
+//          }else if(this.left==null){
+//              this.left.val=m;
+//              return this;
+//          }
+//          else if(this.right==null){
+//              this.right.val=m;
+//              return this;
+//          }
+//          addNext(this.left,m);
+//          return this;
       }
 
 }
