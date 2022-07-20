@@ -46,4 +46,46 @@ public class Tree {
         max = Math.max(max,leftdepth+rightdepth);
         return Math.max(leftdepth,rightdepth)+1;
     }
+
+    /**
+     * 226. Invert Binary Tree (Easy)
+     */
+    public TreeNode inverttree(TreeNode root){
+        if(root == null){return null;}
+        TreeNode m = root.left;
+        root.left = inverttree(root.right);
+        root.right=inverttree(m);
+        return root;
+    }
+
+    /**
+     *617. Merge Two Binary Trees (Easy)
+     */
+
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if(root1 == null && root2 == null){return null;}
+        if(root1 == null){return root2;}
+        if(root2 == null){return root1;}
+        TreeNode root = new TreeNode(root1.val+root2.val);
+        root.left=mergeTrees(root1.left,root2.left);
+        root.right=mergeTrees(root1.right,root2.right);
+        return root;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

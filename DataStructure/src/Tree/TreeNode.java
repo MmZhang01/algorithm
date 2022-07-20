@@ -12,4 +12,16 @@ public class TreeNode {
           this.right = right;
       }
 
+      public TreeNode addNext(TreeNode root,int m){
+          if(this==null){
+              this.val=m;
+          }else if(this.left==null){
+              addNext(this.left,m);
+          }
+          else if(this.right==null){
+              addNext(this.right,m);
+          }
+          return this;
+      }
+
 }
