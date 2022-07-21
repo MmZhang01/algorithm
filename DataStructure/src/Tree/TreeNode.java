@@ -18,34 +18,27 @@ public class TreeNode {
       public void addNext(TreeNode root,int m){
 
           if(root==null){
-              root.val=m;
+              this.val = m;
               return;
           }
           LinkedList<TreeNode> queue =new LinkedList<>();
-          queue.offer(root);
+          queue.add(root);
           while(!queue.isEmpty()){
-              TreeNode node =queue.poll();
-              if(node.left!=null){
-                  queue.offer(node.left);
-              }else{node.}
-              if(node.right!=null){
-                  queue.offer(node.right);
+              root = queue.peek();
+              queue.remove();
+              if(root.left==null){
+                  root.left=new TreeNode(m);
+                  break;
+              }else {
+                  queue.add(root.left);
+              }
+              if(root.right==null){
+                  root.right=new TreeNode(m);
+                  break;
+              }else {
+                  queue.add(root.right);
               }
           }
-
-//          if(this==null){
-//              this.val=m;
-//              return this;
-//          }else if(this.left==null){
-//              this.left.val=m;
-//              return this;
-//          }
-//          else if(this.right==null){
-//              this.right.val=m;
-//              return this;
-//          }
-//          addNext(this.left,m);
-//          return this;
       }
 
 }
