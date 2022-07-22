@@ -22,9 +22,9 @@ public class MinStack {
     }
 
     public void push(int x) {
-        dataStack.add(x);
+        dataStack.push(x);
         min = Math.min(min, x);
-        minStack.add(min);
+        minStack.push(min);
     }
 
     public void pop() {
