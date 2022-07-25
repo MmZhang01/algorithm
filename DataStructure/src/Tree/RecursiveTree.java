@@ -1,6 +1,6 @@
 package Tree;
 
-public class Tree {
+public class RecursiveTree {
 
     /**
      * 104. Maximum Depth of Binary Tree (Easy)
@@ -70,6 +70,20 @@ public class Tree {
         root.left=mergeTrees(root1.left,root2.left);
         root.right=mergeTrees(root1.right,root2.right);
         return root;
+    }
+
+    /**
+     *  112. Path Sum (Easy)
+     */
+
+    public boolean hasPathSum(TreeNode root,int sum){
+        if(root == null){
+            return false;
+        }
+        if(root.left==null && root.right==null && root.val == sum){
+            return true;
+        }
+        return hasPathSum(root.left,sum-root.val)||hasPathSum(root.right,sum-root.val);
     }
 }
 

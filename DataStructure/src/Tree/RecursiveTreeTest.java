@@ -1,6 +1,6 @@
 package Tree;
 
-public class TreeTest {
+public class RecursiveTreeTest {
     public static void test5(){
         TreeNode input1;
         input1=null;
