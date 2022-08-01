@@ -20,7 +20,7 @@ public class ArrayAndMatrixTest {
     }
 
     public static void test4(){
-        int[][] input = new int[][]{{1,5,9},{10,11,13},{12,13,15}};
+        int[][] input = new int[][]{{1,5,9},{10,11,13},{12,13,14}};
         System.out.println(ArrayAndMatrix.kthSmallest(input,2));
     }
     public static void main(String[] args){

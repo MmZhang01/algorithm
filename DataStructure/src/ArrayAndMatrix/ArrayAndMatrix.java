@@ -1,5 +1,8 @@
 package ArrayAndMatrix;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 public class ArrayAndMatrix {
     /**
      * 283. Move Zeroes (Easy)
@@ -68,6 +71,9 @@ public class ArrayAndMatrix {
     /**
      * 378. Kth Smallest Element in a Sorted Matrix ((Medium))
      */
+    /*
+    二分法  指针的值不断趋近于 满足count 的数值
+     */
     public static int kthSmallest(int[][] matrix, int k) {
         int m = matrix.length, n = matrix[0].length;
         int lo = matrix[0][0], hi = matrix[m - 1][n - 1];
@@ -79,9 +85,13 @@ public class ArrayAndMatrix {
                     cnt++;
                 }
             }
-            if (cnt < k) lo = mid + 1;
-            else hi = mid - 1;
+            if (cnt <k) lo = mid + 1;    // cnt 符合的时候，l不变
+            else hi = mid -1 ;
         }
-        return lo;
+        return hi;
     }
+
+
+    int[] arr1 = new int[5];
+    LinkedList<Integer> a=new LinkedList<>();
 }
