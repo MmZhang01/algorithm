@@ -61,4 +61,34 @@ public class Fibonacci {
         }
         return pre1;
     }
+
+    /**
+     * 213. House Robber II (Medium)
+     */
+    public static int robII(int[] nums){
+        int n =nums.length;
+        if (nums==null || n==0) {
+            return 0;
+        }
+        if (n==1){
+            return nums[0];
+        }
+        if(n==2){
+            return Math.max(nums[0],nums[1]);
+        }
+        return Math.max(robII(nums,0,n-2),robII(nums,1,n-1));
+    }
+    private static int robII(int[] nums, int first, int last){
+        int pre2=0,pre1=0;
+        for(int i=first;i<=last;i++){
+            int cur=Math.max(pre2+nums[i],pre1);
+            pre2=pre1;
+            pre1=cur;
+        }
+        return pre1;
+    }
+
+
+
+
 }
