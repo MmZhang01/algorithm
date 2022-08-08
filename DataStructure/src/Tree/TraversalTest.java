@@ -39,7 +39,7 @@ public class TraversalTest {
 //        InorderTraversal.inorder(input);
         PostorderTraversal.postorder(input);
 //        System.out.println(PreorderTraversal.preorderTraversal(input));
-        System.out.println(PostorderTraversal.postorderTraversal(input));
+//        System.out.println(PostorderTraversal.postorderTraversal(input));
     }
 
     public static void main(String[] args){

@@ -76,7 +76,8 @@ public class TwoPointers {
             }
         }
 
-    return new String(result);}
+    return new String(result);
+    }
 
     /*
     680. Valid Palindrome II (Easy)
