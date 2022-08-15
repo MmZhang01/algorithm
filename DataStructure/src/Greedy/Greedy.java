@@ -39,6 +39,13 @@ public class Greedy {
             return 0;
         }
         //每次都选择结尾最小的区间，和下一个区间比较，保证区间不重叠
+
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return (o1[1] < o2[1]) ? -1 : ((o1[1] == o2[1]) ? 0 : 1);
+            }
+        });
         Arrays.sort(intervals, Comparator.comparingInt(o -> o[1])); // 排序，是的区间结尾最小的放在前面。与下一个区间开头进行比较，判断是否重合
         int cnt = 1; // 不重叠的个数
         int end = intervals[0][1]; // 排序后选择第一个区间，即结尾最小的值
@@ -51,6 +58,7 @@ public class Greedy {
         }
         return intervals.length - cnt;
     }
+
 
     /**
      * 452. Minimum Number of Arrows to Burst Balloons (Medium)
@@ -156,6 +164,40 @@ public class Greedy {
                 max=Math.max(max,price-min);
             }
         }return max;
+    }
+
+    /**
+     * 122. Best Time to Buy and Sell Stock II (Easy)
+     */
+    public int maxProfit2(int[] prices) {
+        if(prices==null||prices.length<=1) return 0;
+        int profit = 0;
+        for(int i=0;i<prices.length-1;i++){
+            if(prices[i+1]-prices[i]>0){
+                profit +=prices[i+1]-prices[i];
+            }
+        }
+        return profit;
+    }
+
+    /**
+     *605. Can Place Flowers (Easy)
+     */
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int len = flowerbed.length;
+        int cnt = 0;
+        for (int i = 0; i < len && cnt < n; i++) {
+            if (flowerbed[i] == 1) {
+                continue;
+            }
+            int pre = i == 0 ? 0 : flowerbed[i - 1];
+            int next = i == len - 1 ? 0 : flowerbed[i + 1];
+            if (pre == 0 && next == 0) {
+                cnt++;
+                flowerbed[i] = 1;
+            }
+        }
+        return cnt >= n;
     }
 }
 
