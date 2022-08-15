@@ -38,6 +38,17 @@ public class GreedyTest {
         assertEquals(5,output);
     }
 
+    @Test
+    public void test6(){
+        String s = "abc",t="ahbgd";
+        System.out.println(Greedy.isSubsequence(s,t));
+    }
+    @Test
+    public void test7(){
+        int[] nums= new int[]{4,2,3};
+        System.out.println(Greedy.checkPossibility(nums));
+    }
+
 
 
     public static void main(String[] args){

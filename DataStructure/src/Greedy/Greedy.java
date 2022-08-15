@@ -199,6 +199,40 @@ public class Greedy {
         }
         return cnt >= n;
     }
+
+    /**
+     * 392. Is Subsequence (Medium)
+     */
+    public static boolean isSubsequence(String s, String t) {
+        int i=0,j=0;
+        while(i<s.length() && j<t.length()){
+            if(s.charAt(i)==t.charAt(j)){
+                i++;
+            }
+            j++;
+        }
+        if(i==s.length()) return true;
+        return false;
+    }
+
+    /**
+     * 665. Non-decreasing Array (Easy)
+     */
+    public static boolean checkPossibility(int[] nums) {
+        if (nums.length == 1) return true;
+        int noNormal = 0, i = 0, j = 1;
+        while (j < nums.length) {
+            if (nums[i] > nums[j]) {
+                noNormal++;
+                if (i - 1 >= 0 && nums[i - 1] > nums[j]) {
+                    nums[j] = nums[i];
+                } else nums[i] = nums[j];}
+            i++;
+            j++;
+            if (noNormal > 1) return false;
+            }
+        return true;
+    }
 }
 
 
