@@ -49,14 +49,21 @@ public class GreedyTest {
         System.out.println(Greedy.checkPossibility(nums));
     }
 
+    @Test
+    public void test8(){
+        String s = "ababcbacadefegdehijhklij";
+        System.out.println(Greedy.partitionLabels(s));
+    }
+
 
 
     public static void main(String[] args){
 //        test1();
 //        test2();
 //        test3();
-        test4();
+//        test4();
 //        test5();
+        System.out.println('b'-'a');
     }
 
 

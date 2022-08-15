@@ -233,6 +233,46 @@ public class Greedy {
             }
         return true;
     }
+
+    /**
+     * 53. Maximum Subarray (Easy)
+     */
+    public int maxSubArray(int[] nums) {
+        if(nums == null) return 0;
+        int pre = nums[0];
+        int max = pre;
+        for(int i=1;i<nums.length;i++){
+            pre = pre>0?pre+nums[i]:nums[i];
+            max = Math.max(pre,max);
+        }
+        return max;
+    }
+
+    /**
+     * 763. Partition Labels (Medium)
+     */
+    /*
+    将第一个字母出现的最后一个位置当成第一个片段的切割位置
+    然后遍历第一个片段的字母，分别搜索其最终出现的位置，决定要不要拓展切割位置
+
+    tip 先遍历一遍，将每个字母的最后位置储存起来
+     */
+    public static List<Integer> partitionLabels(String s) {
+        int[] lastIndexOfChar = new int[26];
+        for(int i=0;i<s.length();i++){
+            lastIndexOfChar[(int)s.charAt(i)-'a']=i;
+        }
+        List<Integer> partition = new ArrayList<>();
+        int start = 0, end =0;
+        for(int i=0;i<s.length();++i){
+            end = Math.max(end,lastIndexOfChar[(int)s.charAt(i)-'a']);
+            if(i==end){
+                partition.add(end-start+1);
+                start = end+1;
+            }
+        }
+        return partition;
+    }
 }
 
 
