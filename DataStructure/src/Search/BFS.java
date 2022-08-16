@@ -3,12 +3,11 @@ package Search;
 import javafx.util.Pair;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /*
+将题目转化为求最短路径，但是路径不含权重
+BFS按层次遍历
 用队列来储存每一层的节点，并标记  先进先出
 
  */
@@ -94,12 +93,60 @@ public class BFS {
         return n;
     }
 
+    /**
+     * 127. Word Ladder (Medium)
+     */
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Queue<String> queue = new LinkedList<>();
+        Set<String> used = new HashSet<>();
+        queue.add(beginWord);
+        used.add(beginWord);
+        int level=1;
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            level++;
+            while(size-->0){
+                String cur = queue.poll();
+                for (String word : wordList) {
+                    if(used.contains(word)) continue;
+                    if(isConnect(cur,word)){
+                        if(word==endWord) return level;
+                        queue.add(word);
+                        used.add(word);
+                    }
+                }
+            }
+
+        }
+        return 0;
+    }
+
+    private boolean isConnect(String s,String m){
+        char[] s1=s.toCharArray();
+        char[] s2=m.toCharArray();
+        int diff=0;
+        int i=0,j=0;
+        while(i<s1.length&&j<s2.length){
+            if(s1[i]!=s2[j]) diff++;
+            i++;
+            j++;
+        }
+        return diff==1;
+    }
 
 
 
     @Test
     public void test(){
-        int input = 10;
-        System.out.println(generateSquares(10));
+        String begin = "hit";
+        String end = "cog";
+        List<String> word = new ArrayList<>();
+        word.add("hot");
+        word.add("dot");
+        word.add("dog");
+        word.add("lot");
+        word.add("log");
+        word.add("cog");
+        System.out.println(ladderLength(begin,end,word));
     }
 }
