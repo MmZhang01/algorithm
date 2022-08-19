@@ -17,4 +17,20 @@ public class BST {
     /**
      * 230. Kth Smallest Element in a BST (Medium)
      */
+    public int kthSmallest(TreeNode root, int k) {
+        inOrder(root, k);
+        return val;
+    }
+    private int cnt = 0;
+    private int val;
+    private void inOrder(TreeNode root,int k){
+        if(root == null) return;
+        inOrder(root.left,k);
+        cnt++;
+        if(cnt==k){
+            val = root.val;
+            return;
+        }
+        inOrder(root.right,k);
+    }
 }
