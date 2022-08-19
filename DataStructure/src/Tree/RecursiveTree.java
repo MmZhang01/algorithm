@@ -1,5 +1,9 @@
 package Tree;
 
+/*
+1. 思考退出条件  一般root == null 退出 and 或满足一定条件退出
+2. 代入子数递推
+ */
 public class RecursiveTree {
 
     /**
@@ -35,8 +39,8 @@ public class RecursiveTree {
      */
     private int max=0;
     public int diameterOfBinaryTree(TreeNode root){
-       depth(root);
-       return max;
+        depth(root);
+        return max;
     }
 
     public int depth(TreeNode root){
@@ -84,6 +88,72 @@ public class RecursiveTree {
             return true;
         }
         return hasPathSum(root.left,sum-root.val)||hasPathSum(root.right,sum-root.val);
+    }
+
+    /**
+     * 437. Path Sum III (Easy)
+     */
+    private int pathSumRoot(TreeNode root,int targetSum){
+        if(root == null) return 0;
+        int ret = 0;
+        if(root.val == targetSum) ret++;
+        ret+=pathSumRoot(root.left,targetSum-root.val)+pathSumRoot(root.right,targetSum-root.val);
+        return ret;
+    }
+    public int pathSum(TreeNode root, int targetSum) {
+        if(root == null)return 0;
+        int ret = pathSumRoot(root, targetSum)+pathSum(root.left,targetSum)+pathSum(root.right,targetSum);
+        return ret;
+    }
+
+    /**
+     * 572. Subtree of Another Tree (Easy)
+     */
+    private boolean sameTree(TreeNode t1,TreeNode t2){
+        if(t1 == null && t2 == null) return true;
+        if(t1==null || t2 == null) return false;
+        if (t1.val!=t2.val) return false;
+        boolean l1=sameTree(t1.left,t2.left);
+        boolean l2=sameTree(t1.right,t2.right);
+        return l1&&l2;
+    }
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root==null) return false;
+        return sameTree(root,subRoot) || isSubtree(root.left,subRoot)||isSubtree(root.right,subRoot);
+    }
+
+    /**
+     * 101. Symmetric Tree (Easy)
+     */
+    /*
+    利用revertTree + sameTree
+     */
+//    public boolean isSymmetric(TreeNode root) {
+//        TreeNode tmp = inverttree(root.right);
+//        return sameTree(root.left,tmp);
+//    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        return isSubtree(root.left,root.right);
+
+    }
+    private boolean isSymmetric(TreeNode r1,TreeNode r2) {
+        if(r1==null&&r2==null){return true;}
+        if(r1==null||r2==null){return false;}
+        if(r1.val!=r2.val){return false;}
+        return isSymmetric(r1.left,r2.right)&&isSymmetric(r1.right,r2.left);
+    }
+
+    /**
+     * 111. Minimum Depth of Binary Tree (Easy)
+     */
+    public int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        int l = minDepth(root.left);
+        int r = minDepth(root.right);
+        if(l==0||r==0) return l+r+1;
+        return Math.min(l,r)+1;
+
     }
 }
 
