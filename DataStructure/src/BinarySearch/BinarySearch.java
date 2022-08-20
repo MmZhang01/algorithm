@@ -6,6 +6,18 @@ import org.junit.Test;
 /**
  * 每次查找后，对集合折半，时间复杂度为 O(logN)
  * 注意判断边界值  循环条件  退出循环时指针的状态
+ *
+ * l=-1,r=N
+ * while l+1!=r
+ *      m = (l+r)/2
+ *      if IsBlue(m)
+ *          l=m
+ *      else
+ *          r=m
+ * return l or r
+ *
+ * 以上将区域分为蓝红两块   初始下表为 -1 和  N
+ * 循环过程中，红蓝区域逐渐靠近，直到l+1=r
  */
 
 public class BinarySearch {
@@ -49,10 +61,9 @@ public class BinarySearch {
         int l =1, h=x;
         while(l<=h){
             int mid = l+(h-l)/2;
-            int sqr= mid*mid;
-            if(sqr==x){
+            if(x/mid==mid){
                 return mid;
-            }else if(sqr>x){
+            }else if(x/mid<mid){
                 h=mid-1;
             }else {
                 l=mid+1;
@@ -60,17 +71,42 @@ public class BinarySearch {
         }return h;
     }
 
-    @Test
-    public void test(){
-        int input= 2147395599;
-        System.out.println(mySqurt(input));
-    }
-
-
     /**
      * 744. Find Smallest Letter Greater Than Target (Easy)
      */
+    public static char nextGreatestLetter(char[] letters, char target) {
+        int l =-1,r=letters.length;
+        while(l+1!=r){
+            int m = l+(r-l)/2;
+            if(letters[m]<=target){
+                l=m;
+            }else r=m;
+        }
+        return r==letters.length?letters[0]:letters[r];
+    }
 
+    /**
+     * 540. Single Element in a Sorted Array (Medium)
+     */
+    public static int singleNonDuplicate(int[] nums) {
+        int l = -1, r =nums.length;
+        while(l+1!=r){
+            int m = l+(r-l)/2;
+            if(m%2==0){
+                if(m==nums.length-1) return nums[m];
+                if(nums[m]==nums[m+1]) {
+                    l = m;
+                }else r=m;
+            }
+            if(m%2==1){
+                if(nums[m]==nums[m-1]){
+                    l=m;
+                } else r=m;
+            }
+
+        }
+        return nums[r];
+    }
 
 }
 
