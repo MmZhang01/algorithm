@@ -1,6 +1,8 @@
 package BinarySearch;
 
 
+import org.junit.Test;
+
 /**
  * 每次查找后，对集合折半，时间复杂度为 O(logN)
  * 注意判断边界值  循环条件  退出循环时指针的状态
@@ -57,6 +59,13 @@ public class BinarySearch {
             }
         }return h;
     }
+
+    @Test
+    public void test(){
+        int input= 2147395599;
+        System.out.println(mySqurt(input));
+    }
+
 
     /**
      * 744. Find Smallest Letter Greater Than Target (Easy)
