@@ -1,6 +1,11 @@
 package Tree;
 
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BST {
     /**
      * 669. Trim a Binary Search Tree (Easy)
@@ -32,5 +37,24 @@ public class BST {
             return;
         }
         inOrder(root.right,k);
+    }
+
+    public List<Integer> trimBst(TreeNode root){
+        inOrder(root);
+        return res;
+    }
+    private List<Integer> res = new ArrayList<>();
+    private void inOrder(TreeNode root){
+        if(root==null) return;
+        inOrder(root.left);
+        res.add(root.val);
+        inOrder(root.right);
+    }
+    @Test
+    public void testTrimBst(){
+        TreeNode input = new TreeNode(1);
+        input.left = new TreeNode(2);
+        input.left.right = new TreeNode(3);
+        System.out.println(trimBst(input));
     }
 }
