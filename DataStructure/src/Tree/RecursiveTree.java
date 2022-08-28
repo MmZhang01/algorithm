@@ -1,5 +1,12 @@
 package Tree;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /*
 1. 思考退出条件  一般root == null 退出 and 或满足一定条件退出
 2. 代入子数递推
@@ -153,6 +160,82 @@ public class RecursiveTree {
         int r = minDepth(root.right);
         if(l==0||r==0) return l+r+1;
         return Math.min(l,r)+1;
+    }
+
+    /**
+     *404. Sum of Left Leaves (Easy)
+     */
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root ==null) return 0;
+        if(isLeaf(root.left)) return root.left.val+sumOfLeftLeaves(root.right);
+        return sumOfLeftLeaves(root.left)+sumOfLeftLeaves(root.right);
+
+    }
+    private boolean isLeaf(TreeNode node){
+        if(node == null) return false;
+        return node.left==null && node.right==null;
+    }
+
+    /**
+     * 687. Longest Univalue Path (Easy)
+     */
+    public int longestUnivaluePath(TreeNode root) {
+
+        dfs(root);
+        return path;
+    }
+    private int path = 0;
+    private int dfs(TreeNode root){
+        if (root == null) return 0;
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        int leftPath = root.left != null && root.left.val == root.val ? left + 1 : 0;
+        int rightPath = root.right != null && root.right.val == root.val ? right + 1 : 0;
+        path = Math.max(path, leftPath + rightPath);
+        return Math.max(leftPath, rightPath);
+    }
+
+
+//    int ans;
+//    public int longestUnivaluePath(TreeNode root) {
+//        ans = 0;
+//        arrowLength(root);
+//        return ans;
+//    }
+//    public int arrowLength(TreeNode node) {
+//        if (node == null) return 0;
+//        int left = arrowLength(node.left);
+//        int right = arrowLength(node.right);
+//        int arrowLeft = 0, arrowRight = 0;
+//        if (node.left != null && node.left.val == node.val) {
+//            arrowLeft += left + 1;
+//        }
+//        if (node.right != null && node.right.val == node.val) {
+//            arrowRight += right + 1;
+//        }
+//        ans = Math.max(ans, arrowLeft + arrowRight);
+//        return Math.max(arrowLeft, arrowRight);
+//    }
+    @Test
+    public void testLongestUnivaluePath(){
+        TreeNode input = new TreeNode(1);
+        input.right = new TreeNode(1);
+        input.right.left = new TreeNode(1);
+        input.right.right = new TreeNode(1);
+        input.right.left.left = new TreeNode(1);
+        input.right.left.right = new TreeNode(1);
+        input.right.right.left = new TreeNode(1);
+        System.out.println(longestUnivaluePath(input));
+    }
+
+    /**
+     * 337. House Robber III (Medium)
+     */
+    public int rob(TreeNode root) {
+      return 0;
+    }
+
+    public void testRob(){
 
     }
 }
