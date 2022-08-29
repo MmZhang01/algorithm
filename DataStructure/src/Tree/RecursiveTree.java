@@ -232,12 +232,32 @@ public class RecursiveTree {
      * 337. House Robber III (Medium)
      */
     public int rob(TreeNode root) {
-      return 0;
+        if(root == null ) return 0;
+        int val = 0;
+        if(root.left!= null){
+            val+=rob(root.left.left)+rob(root.left.right);
+        }
+        if(root.right!= null){
+            val+=rob(root.right.right)+rob(root.right.left);
+        }
+      return Math.max(val+root.val,rob(root.left)+rob(root.right));
     }
 
-    public void testRob(){
-
+    /**
+     * 671. Second Minimum Node In a Binary Tree (Easy)
+     */
+    public int findSecondMinimumValue(TreeNode root) {
+        if (root == null) return -1;
+        if (root.left == null && root.right == null) return -1;
+        int leftVal = root.left.val;
+        int rightVal = root.right.val;
+        if (leftVal == root.val) leftVal = findSecondMinimumValue(root.left);
+        if (rightVal == root.val) rightVal = findSecondMinimumValue(root.right);
+        if (leftVal != -1 && rightVal != -1) return Math.min(leftVal, rightVal);
+        if (leftVal != -1) return leftVal;
+        return rightVal;
     }
+
 }
 
 
