@@ -1,7 +1,10 @@
 package TwoPointers;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 1指定两个指针
@@ -50,12 +53,20 @@ public class TwoPointers {
         }
         return false;
     }
+    @Test
+    public void testJudgeSquareSum(){
+//        System.out.println(judgeSquareSum(2147483600));
+        System.out.println((int)Math.sqrt(2147483600));
+    }
+
 
     /**
      * 345. Reverse Vowels of a String (Easy)
      */
     private final static HashSet<Character> vowels = new HashSet<>(
             Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
+
+
 
     public String reverseVowels(String s){
         if (s == null) {
