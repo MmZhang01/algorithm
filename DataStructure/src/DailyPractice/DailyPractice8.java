@@ -3,7 +3,6 @@ package DailyPractice;
 import org.junit.Test;
 
 public class DailyPractice8 {
-<<<<<<< HEAD
     @Test
     public static void main(String[] args){
         int i=0,j=0;
@@ -22,7 +21,6 @@ public class DailyPractice8 {
 
     }
 
-=======
     /**
      * 838. Push Dominoes
      */
@@ -102,5 +100,4 @@ public class DailyPractice8 {
     public void testClimbStairs(){
         System.out.println(climbStairs(3));
     }
->>>>>>> 727b5c840b2bcde4eb335dbd754640cc6c5a1645
 }

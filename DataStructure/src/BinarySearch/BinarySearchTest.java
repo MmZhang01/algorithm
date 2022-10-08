@@ -12,7 +12,7 @@ public class BinarySearchTest {
         int input1 =4;
         int input2=8;
         int m=2;
-        int output=BinarySearch.mySqurt(input1);
+        int output=BinarySearch.mySqurt(input2);
         assertEquals(m,output);
     }
     @Test

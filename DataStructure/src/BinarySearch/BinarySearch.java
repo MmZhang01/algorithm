@@ -49,27 +49,40 @@ public class BinarySearch {
             }
         }
         return l;    //key应该在的位置
+
     }
 
     /**
      * 69. Sqrt(x) (Easy)
      */
     public static int mySqurt(int x){
-        if(x<=1){
-            return x;
-        }
-        int l =1, h=x;
-        while(l<=h){
-            int mid = l+(h-l)/2;
-            if(x/mid==mid){
-                return mid;
-            }else if(x/mid<mid){
-                h=mid-1;
-            }else {
-                l=mid+1;
+//        if(x<=1){
+//            return x;
+//        }
+//        int l =1, h=x;
+//        while(l<=h){
+//            int mid = l+(h-l)/2;
+//            if(x/mid==mid){
+//                return mid;
+//            }else if(x/mid<mid){
+//                h=mid-1;
+//            }else {
+//                l=mid+1;
+//            }
+//        }return h;
+        int l =0,r=x;
+        while(l+1!=r){
+            int m = (l+r)/2;
+            if(x/m>=m){
+                l=m;
+            }else{
+                r=m;
             }
-        }return h;
+        }
+        return l;
     }
+
+
 
     /**
      * 744. Find Smallest Letter Greater Than Target (Easy)
