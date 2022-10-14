@@ -56,7 +56,7 @@ public class DailyPractice10 {
             while(si==' ') continue;
             positive = si =='-'? false:true;
             continue;
-            
+
         }
     }
 }
