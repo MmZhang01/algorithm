@@ -50,13 +50,47 @@ public class DailyPractice10 {
      * @return
      */
     public int myAtoi(String s) {
-        char[] ss = s.toCharArray();
-        boolean positive = true;
-        for(char si:ss){
-            while(si==' ') continue;
-            positive = si =='-'? false:true;
-            continue;
-
+        int i =0,ans =0,sign=1;
+        while(i<s.length()&& s.charAt(i)==' ') i++;
+        if(i<s.length()&&s.charAt(i)=='-'){
+            sign = -1;
+            i++;
+        } else if (i<s.length()&&s.charAt(i)=='+') {
+            i++;
         }
+        while(i<s.length()&&s.charAt(i)>='0'&&s.charAt(i)<='9'){
+            if(ans > Integer.MAX_VALUE/10 || ans == Integer.MAX_VALUE/10 && s.charAt(i)>'7'){
+                if(sign == 1) return Integer.MAX_VALUE;
+                    else return Integer.MIN_VALUE;
+            }
+            ans = ans*10 + (s.charAt(i++)-'0');
+        }
+        return sign*ans;
+
+    }
+    @Test
+    public void testMyAtoi(){
+        System.out.println(myAtoi("   123"));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

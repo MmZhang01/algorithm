@@ -121,5 +121,22 @@ public class BinarySearch {
         return nums[r];
     }
 
+    /**
+     * 153. Find Minimum in Rotated Sorted Array (Medium)
+     */
+    public int findMin(int[] nums) {
+        int l =-1,r =nums.length;
+        while(l+1!=r){
+            int m = l+(r-l)/2;
+            if(nums[m]>=nums[0]){
+                l=m;
+            }else r=m;
+        }
+        if(l==nums.length-1) return nums[0];
+        return nums[r];
+    }
+
+
+
 }
 
