@@ -3,6 +3,8 @@ package DailyPractice;
 import java.util.List;
 
 public class DailyPractice17 {
+    // Math base convert
+    // dfs
 
     /**
      * 1239. Maximum Length of a Concatenated String with Unique Characters
@@ -58,15 +60,21 @@ public class DailyPractice17 {
      * @return
      */
     public String convertToBase7(int num) {
-        if (num == 0) return "0";
-        StringBuffer ret = new StringBuffer();
-        boolean postive = num>0;
-        num = Math.abs(num);
-        while(num>0){
-            ret.append(num%7);
-            num=num/7;
+//        if (num == 0) return "0";
+//        StringBuffer ret = new StringBuffer();
+//        boolean postive = num>0;
+//        num = Math.abs(num);
+//        while(num>0){
+//            ret.append(num%7);
+//            num=num/7;
+//        }
+//        return postive==true?ret.reverse().toString():"-"+ret.reverse().toString();
+
+        // use recursive
+        if(num/7 ==0) {
+            return String.valueOf(num%7);
         }
-        return postive==true?ret.reverse().toString():"-"+ret.reverse().toString();
+        return convertToBase7(num/7)+num%7;
     }
 
     /**

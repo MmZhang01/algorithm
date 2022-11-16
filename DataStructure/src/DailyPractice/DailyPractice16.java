@@ -3,6 +3,7 @@ package DailyPractice;
 import java.util.*;
 
 public class DailyPractice16 {
+    // todayTopic : dp
     /**
      * 645. Set Mismatch
      * @param nums
@@ -69,6 +70,8 @@ public class DailyPractice16 {
      * @param n
      * @return
      */
+    // 数字拆分  找最大乘积
+    // alternative dp1 dp2 dp3 is fixed, after this only need to consider dp[i]*dp[n-i]
     public int integerBreak(int n) {
         int[] dp = new int[n+1];
         dp[1]=1;
