@@ -1,5 +1,7 @@
 package DailyPractice;
 
+import java.util.*;
+
 public class DailyPractice34 {
 
 // BST
@@ -84,5 +86,48 @@ public class DailyPractice34 {
         sum+=root.val;
         root.val=sum;
         inOrder(root.left);
+    }
+
+    /**
+     * 380. Insert Delete GetRandom O(1)
+     */
+    class RandomizedSet {
+
+        HashMap<Integer,Integer> map;
+        List<Integer> list;
+        Random r;
+
+        public RandomizedSet() {
+            map = new HashMap<>();
+            list = new ArrayList<>();
+            r=new Random();
+        }
+
+        public boolean insert(int val) {
+            boolean ret = map.containsKey(val);
+            if(ret==true) return false;
+            map.put(val,list.size());
+            list.add(val);
+            return true;
+        }
+
+        public boolean remove(int val) {
+            boolean ret = map.containsKey(val);
+            if(ret==false) return false;
+            int loc = map.get(val); // remove position
+            if(loc<list.size()-1){
+                int lastOne = list.get(list.size()-1);
+                list.set(loc,lastOne);   // set lastOne to a loc
+                map.put(lastOne,loc);
+            }
+            list.remove(list.size()-1);// remove lastOne
+            map.remove(val);
+            return true;
+        }
+
+        public int getRandom() {
+            return list.get(r.nextInt(list.size()));
+        }
+
     }
 }
