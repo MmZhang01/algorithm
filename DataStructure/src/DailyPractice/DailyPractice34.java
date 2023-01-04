@@ -130,4 +130,48 @@ public class DailyPractice34 {
         }
 
     }
+
+    /**
+     * 1207. Unique Number of Occurrences
+     * @param arr
+     * @return
+     */
+    public boolean uniqueOccurrences(int[] arr) {
+        // iterate arr and count
+        HashMap<Integer,Integer> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
+        for(int a:arr){
+            int cnt = map.getOrDefault(a,0)+1;
+            map.put(a,cnt);
+        }
+        for(int i: map.values()){
+            set.add(i);
+        }
+        if(set.size()!= map.size()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 1704. Determine if String Halves Are Alike
+     * @param s
+     * @return
+     */
+    public boolean halvesAreAlike(String s) {
+        int n =s.length();
+        HashSet<Character> set = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
+        int cnt1=0,cnt2=0;
+        for(int i=0;i<n/2;i++){
+            if(set.contains(s.charAt(i))){
+                cnt1++;
+            }
+        }
+        for(int i=n/2;i<n;i++){
+            if(set.contains(s.charAt(i))){
+                cnt2++;
+            }
+        }
+        return cnt1==cnt2;
+    }
 }
