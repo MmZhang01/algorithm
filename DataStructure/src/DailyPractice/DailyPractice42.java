@@ -148,4 +148,89 @@ public class DailyPractice42 {
         }
         return -1;
     }
+
+    /**
+     * 1162. As Far from Land as Possible
+     * @param grid
+     * @return
+     */
+    public int maxDistance(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int res = 0;
+
+        // the distance to its left up land
+        for(int i =0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1) continue;
+                grid[i][j]=201;// the default max possible distance
+                if(i>0) grid[i][j]= Math.min(grid[i][j],grid[i-1][j]+1);
+                if(j>0) grid[i][j] = Math.min(grid[i][j],grid[i][j-1]+1);
+            }
+        }
+
+        for(int i=m-1;i>=0;i--){
+            for(int j = n-1;j>=0;j--){
+                if(grid[i][j]==1) continue;
+                if(i<m-1) grid[i][j] = Math.min(grid[i][j],grid[i+1][j]+1);
+                if(j<n-1) grid[i][j] = Math.min(grid[i][j],grid[i][j+1]+1);
+                res = Math.max(res,grid[i][j]);
+            }
+        }
+        return res = res==201?-1:res-1;
+    }
+
+    /**
+     * 1129. Shortest Path with Alternating Colors
+     * @param n
+     * @param redEdges
+     * @param blueEdges
+     * @return
+     */
+    //bfs
+    public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
+        // key-> current node, 2D array->[[next node,edge color],...]
+        Map<Integer,List<List<Integer>>> map = new HashMap<>();
+        for(int[] redEdge:redEdges){
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(redEdge[1]);
+            tmp.add(0);
+            List<List<Integer>> tmp2 = map.getOrDefault(redEdge[0],new ArrayList<>());
+            tmp2.add(tmp);
+            map.put(redEdge[0],tmp2);
+        }
+        for(int[] blueEdge:blueEdges){
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(blueEdge[1]);
+            tmp.add(1);
+            List<List<Integer>> tmp2 = map.getOrDefault(blueEdge[0],new ArrayList<>());
+            tmp2.add(tmp);
+            map.put(blueEdge[0],tmp2);
+        }
+        int[] res = new int[n];
+        Arrays.fill(res,-1);
+        boolean[][] visit = new boolean[n][2]; // node,color
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{0,0,-1});
+        res[0] = 0;
+        visit[0][0]= visit[0][1]=true;
+        while (!q.isEmpty()){
+            int[] e = q.poll();
+            int node = e[0],step=e[1],preC=e[2];
+            if(!map.containsKey(node)) continue;
+
+            for(List<Integer> list:map.get(node)){
+                int neighbor = list.get(0);
+                int color = list.get(1);
+                if(!visit[neighbor][color]&&color!=preC){
+                    if (res[neighbor]==-1){
+                        res[neighbor] = step+1;
+                        visit[neighbor][color] = true;
+                        q.offer(new int[]{neighbor,step+1,color});
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }
