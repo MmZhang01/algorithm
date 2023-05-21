@@ -1,6 +1,7 @@
-# algorithm
+# Algorithms and Data Structures
 
-this is for recording my leetcode problems.
-change1
-idea project is at DataStructure file
-algorithm is git workplace
+Notebook for my understanding of all common algorithms and data structure using Java.
+
+This is also recording my daily leetcode problems. See Daily Code
+
+
